@@ -23,9 +23,9 @@ app.use(morgan('dev'));
 
 
 
-// app.use("/", (req, res) => {
-//     res.send("<h1>server main page hi hi hi ----- 3 ----- 4!!!!</h1>")
-// })
+app.use("/", (req, res) => {
+    res.send("<h1>server main page hi hi hi ----- 3 ----- 4!!!!</h1>")
+})
 
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/blog', BlogRoutes);
