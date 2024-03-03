@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { IoSearchOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
+    const isLogin = useSelector((state) => state.isLogin);
+    console.log(isLogin);
+
     const [toggle, setToggle] = useState(false);
     const [profile, setProfile] = useState(false);
+
 
     return (
         <>
@@ -18,19 +24,42 @@ const Navigation = () => {
                     <input type="text" placeholder="search" className="p-1 text-black"></input>
                     <span className="cursor-pointer"><IoSearchOutline size={30} className="border-2 bg-black p-1 " /></span>
                     <div className="flex items-center justify-center gap-4 ml-4">
-                        <h1 className="font-semibold cursor-pointer text-2xl">BLOGS</h1>
-                        <h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1>
+
+                        <NavLink to={'/blogs'}><h1 className="font-semibold cursor-pointer text-2xl">BLOGS</h1></NavLink>
+                        {
+                            isLogin ? <>
+
+                                <NavLink to={"/blogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
+                            </> : <></>
+                        }
+
                     </div>
                 </div>
 
                 <div className="md:flex hidden relative">
                     <CgProfile size={40} onClick={() => setProfile(!profile)} />
                     {
-                        profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
-                            <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Login</h1>
-                            <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Register</h1>
-                            <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Dashboard</h1>
-                        </div>) : (<></>)
+
+                        isLogin ? <>
+                            {
+                                profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
+                                    <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Logout</h1>
+                                    <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">My Dashboard</h1>
+                                </div>) : (<></>)
+                            }
+
+                        </> : <>
+                            {
+                                profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
+
+                                    <NavLink to={'/login'}><h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Login</h1></NavLink>
+                                    <h1 className="cursor-pointer bg-slate-950 p-2 rounded-md text-sm text-red-700 mt-3">LOGIN TO ACCESS TO WRITE YOUR OWN BLOGS</h1>
+                                </div>) : (<></>)
+                            }
+
+                        </>
+
+
                     }
                 </div>
 
@@ -47,19 +76,35 @@ const Navigation = () => {
                             <span className="cursor-pointer"><IoSearchOutline size={30} className="border-2 bg-black p-1 " /></span>
                         </div>
                         <div className="flex items-center justify-center gap-8 ml-4 flex-col">
-                            <h1 className="font-bold cursor-pointer text-2xl">BLOGS</h1>
-                            <h1 className="font-bold cursor-pointer text-2xl">MY BLOGS</h1>
+                            <NavLink to={"/blogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
+                            {
+                                isLogin ? <>
+                                    <NavLink to={"/blogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
+                                </> : <></>
+                            }
                         </div>
                     </div>
 
                     <div className="absolute bottom-40 left-50">
                         <CgProfile size={40} onClick={() => setProfile(!profile)} />
                         {
-                            profile ? (<div className="absolute top-12 bg-slate-800 min-w-[150px] left-0 p-2 gap-4 text-left ">
-                                <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Login</h1>
-                                <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Register</h1>
-                                <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Dashboard</h1>
-                            </div>) : (<></>)
+                            isLogin ? <>
+                                {
+                                    profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
+                                        <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Logout</h1>
+                                        <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">My Dashboard</h1>
+                                    </div>) : (<></>)
+                                }
+
+                            </> : <>
+                                {
+                                    profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
+                                        <NavLink to={'/login'}><h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Login</h1></NavLink>
+                                        <h1 className="cursor-pointer bg-slate-950 p-2 rounded-md text-sm text-red-700 mt-3">LOGIN TO ACCESS TO WRITE YOUR OWN BLOGS</h1>
+                                    </div>) : (<></>)
+                                }
+
+                            </>
                         }
                     </div>
 
