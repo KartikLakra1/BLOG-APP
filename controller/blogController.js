@@ -33,16 +33,16 @@ export const getAllBlogController = async (req, res) => {
 // create BlogController
 export const createBlogController = async (req, res) => {
     try {
-        const { title, description, image, user } = req.body;
+        const { title, description, image, useremail } = req.body;
 
-        if (!title || !description || !image || !user) {
+        if (!title || !description || !image || !useremail) {
             res.status(401).send({
                 success: false,
                 message: "Please provide all fields"
             })
         }
 
-        const existingUser = await userModels.findById(user);
+        const existingUser = await userModels.findOne({ email: useremail });
 
         if (!existingUser) {
             res.status(401).send({
@@ -51,19 +51,32 @@ export const createBlogController = async (req, res) => {
             })
         }
 
-        const newBlog = new blogModels({ title, description, image, user });
-        const session = await mongoose.startSession();
-        session.startTransaction();
-        await newBlog.save({ session });
-        existingUser.blogs.push(newBlog);
-        await existingUser.save({ session });
-        await session.commitTransaction();
-        await newBlog.save();
+        const blog = await blogModels.create({ title, description, image, author: existingUser._id });
+
+        // let BlogId = new mongoose.Types.ObjectId(blog._id);
+
+        // await userModels.updateOne(
+        //     {
+        //         email: useremail
+        //     },
+        //     {
+        //         $push: {
+        //             blogs: BlogId
+        //         },
+        //     },
+        //     { upsert: false, new: true },
+        // )
+
+        await userModels.findByIdAndUpdate(existingUser._id, {
+            $push: {
+                blogs: blog._id
+            }
+        })
 
         res.status(201).send({
             success: true,
             message: "Blog Created !!",
-            newBlog,
+            blog
         })
 
     } catch (error) {
@@ -127,10 +140,38 @@ export const getBlogByController = async (req, res) => {
 // deleting single blog
 export const deleteblogController = async (req, res) => {
     try {
-        const { id } = req.params;
-        const blog = await blogModels.findByIdAndDelete(id).populate('user');
-        await blog.user.blogs.pull(blog);
-        await blog.user.save();
+        const blogId = req.params.blogId;
+
+        const blog = await blogModels.findById(blogId);
+
+        if (!blog) {
+            console.error('Blog not found:', blogId);
+            return res.status(404).json({ success: false, error: 'Blog not found' });
+        }
+
+        // Ensure that the author field is populated
+        if (!blog.author) {
+            console.error('Author not found for blog:', blogId);
+            return res.status(404).json({ success: false, error: 'Author not found for the blog' });
+        }
+
+        const user = await userModels.findById(blog.author);
+
+        if (!user) {
+            console.error('user not found:', blog.author);
+            return res.status(404).json({ success: false, error: 'User not found' });
+        }
+
+        // Remove blog reference from user's blogs array
+        user.blogs = user.blogs.filter(b => b.toString() !== blogId);
+
+
+        // Save the updated user
+        await user.save();
+
+
+        // Delete the blog
+        await blogModels.findByIdAndDelete(blogId);
 
         res.status(201).send({
             success: true,
@@ -149,7 +190,8 @@ export const deleteblogController = async (req, res) => {
 // get user blog
 export const userBlogController = async (req, res) => {
     try {
-        const userBlog = await userModels.findById(req.params.id).populate("blogs");
+
+        const userBlog = await userModels.findById(req.params.userId).populate("blogs");
 
         if (!userBlog) {
             res.status(401).send({

@@ -11,8 +11,8 @@ router.put('/update-blog/:id', updateBlogController);
 
 router.get('/get-blog/:id', getBlogByController);
 
-router.delete('/delete-blog/:id', deleteblogController);
+router.delete('/delete-blog/:blogId', deleteblogController);
 
-router.get('/user-blog/:id', userBlogController);
+router.get('/user-blog/:userId', userBlogController);
 
-export default router
+export default router;
