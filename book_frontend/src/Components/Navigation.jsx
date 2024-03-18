@@ -15,7 +15,7 @@ const Navigation = () => {
 
     return (
         <>
-            <div className=" md:flex justify-around items-center bg-gradient-to-r from-slate-600 to-slate-900 text-white pt-6 pb-7 relative">
+            <div className=" md:flex justify-around items-center bg-gradient-to-r from-slate-600 to-slate-900 text-white pt-6 pb-7 relative z-50">
                 <div className="text-left pl-1 z-20">
                     <h1 className="text-5xl font-bold text-yellow-500">BLOG</h1>
                 </div>
