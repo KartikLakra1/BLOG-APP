@@ -5,7 +5,7 @@ import userModels from '../Models/userModels.js';
 
 export const getAllBlogController = async (req, res) => {
     try {
-        const blogs = await blogModels.find({})
+        const blogs = await blogModels.find({}).populate("author")
         if (!blogs) {
             return res.status(401).send({
                 success: false,

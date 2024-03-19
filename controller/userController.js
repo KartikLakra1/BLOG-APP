@@ -104,3 +104,23 @@ export const loginController = async (req, res) => {
         })
     }
 }
+
+// getting user information
+export const getuserinfo = async (req, res) => {
+    try {
+
+        const user = await userSchema.findById(req.params.userId).populate("blogs")
+
+        res.status(201).send({
+            success: true,
+            message: "user got successfully",
+            user
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(401).send({
+            success: false,
+            message: "Error in gettting all users",
+        })
+    }
+}

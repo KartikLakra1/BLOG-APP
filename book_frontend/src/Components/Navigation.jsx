@@ -44,7 +44,7 @@ const Navigation = () => {
                         {
                             isLogin ? <>
 
-                                <NavLink to={"/blogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
+                                <NavLink to={"/myblogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
                             </> : <></>
                         }
 
@@ -59,7 +59,9 @@ const Navigation = () => {
                             {
                                 profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
                                     <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md" onClick={handleLogout}>Logout</h1>
-                                    <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">My Dashboard</h1>
+                                    <NavLink to={'/userdashboard'}>
+                                        <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">My Dashboard</h1>
+                                    </NavLink>
                                 </div>) : (<></>)
                             }
 
@@ -94,7 +96,7 @@ const Navigation = () => {
                             <NavLink to={"/blogs"}><h1 className="font-semibold cursor-pointer text-2xl"> BLOGS</h1></NavLink>
                             {
                                 isLogin ? <>
-                                    <NavLink to={"/blogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
+                                    <NavLink to={"/myblogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
                                 </> : <></>
                             }
                         </div>
@@ -107,7 +109,9 @@ const Navigation = () => {
                                 {
                                     profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
                                         <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md" onClick={handleLogout}>Logout</h1>
-                                        <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">My Dashboard</h1>
+                                        <NavLink to={'/userdashboard'}>
+                                            <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">My Dashboard</h1>
+                                        </NavLink>
                                     </div>) : (<></>)
                                 }
 

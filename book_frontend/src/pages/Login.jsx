@@ -19,6 +19,9 @@ const Login = () => {
                 email, password
             });
             if (response.data.success) {
+                // saving userinformation in localstroage
+                localStorage.setItem("userId", response?.data?.user._id);
+
                 dispatch(authActions.login());
                 alert(response.data.message);
                 navigate("/")
