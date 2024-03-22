@@ -35,9 +35,11 @@ const UserBlog = () => {
                         image={blog.image}
                         description={blog.description}
                         name={blog.author.username}
-                        // email={blog.author.email}
-                        // date={blog.createdAt}
+                        id={blog._id}
+                        email={blog.author.email}
+                        date={blog.createdAt}
                         key={blog._id}
+                        isUser={true}
 
                     />)}</div>
                 }

@@ -9,6 +9,7 @@ import UserBlog from "./pages/UserBlog";
 import UserDashboard from "./pages/UserDashboard";
 import CreateBlog from "./pages/CreateBlog";
 import UpdateBlog from "./pages/UpdateBlog";
+import BlogDetails from "./pages/BlogDetails";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path="/userdashboard/createblog" element={<CreateBlog />} />
           <Route path="/userdashboard/updateblog" element={<UpdateBlog />} />
+          <Route path="/blog-details/:id" element={<BlogDetails />} />
 
 
         </Routes>

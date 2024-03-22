@@ -8,7 +8,8 @@ import { authActions } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
-    const isLogin = useSelector((state) => state.isLogin);
+    let isLogin = useSelector((state) => state.isLogin);
+    isLogin = isLogin || localStorage.getItem("userId");
     console.log(isLogin);
 
     const [toggle, setToggle] = useState(false);
@@ -21,6 +22,7 @@ const Navigation = () => {
             dispatch(authActions.logout());
             alert("logout successful")
             navigate('/login')
+            localStorage.clear();
 
         } catch (error) {
             console.log(error);
