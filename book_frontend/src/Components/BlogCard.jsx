@@ -22,10 +22,30 @@ const BlogCard = ({ title, image, description, name, email, date, id, isUser }) 
     }
 
     return (
-        <div className="w-[350px] lg:w-[500px] shadow-2xl bg-slate-100 p-2 rounded-lg drop-shadow-2xl m-2" >
+        <div className="w-[70%] lg:w-[80%] shadow-3xl bg-gradient-to-tr from-slate-950 to-slate-700 rounded-lg  m-2 text-white " >
 
-            <h1 className="min-h-[30px]  text-2xl font-bold ml-1">{title}</h1>
-            <p className="text-red-500">Created at : {date}</p>
+            <div className="h-[200px] w-full md:h-[210px] lg:h-[230px] lg:w-full rounded-md border-black border mb-3">
+                <img src={image} alt="card image" className="h-full w-full" />
+            </div>
+
+
+            <h1 className=" text-xl  lg:text-xl font-bold font-serif p-2 text-left">{title}</h1>
+
+            <hr className="mb-3" />
+
+            <p className="m-2 text-lg lg:text-lg text-left">{description.substring(0, 200)}</p>
+
+            <hr className="mb-3" />
+
+            {
+                (name || email) ?
+                    <>
+                        <p className="font-bold">Posted By : <span className="font-normal">{name}</span></p>
+                        <p className="font-bold">Contact Info : <span className="font-normal">{email}</span></p>
+                    </> : <></>
+            }
+
+            <p className="text-red-500 text-md underline">Created at : {date}</p>
 
             {
                 isUser && (
@@ -34,20 +54,6 @@ const BlogCard = ({ title, image, description, name, email, date, id, isUser }) 
                         <p className="border-blue-400 border-2 p-1 bg-blue-400 rounded-md text-white font-bold cursor-pointer" onClick={handleEdit}>Edit</p>
                     </div>
                 )
-            }
-
-            <div className="h-[250px] w-[330px] lg:h-[350px] lg:w-[450px] p-2 border-black border mt-5 mb-3">
-                <img src={image} alt="card image" className="h-full w-full" />
-            </div>
-
-            <p className="m-2 text-xl">{description}</p>
-
-            {
-                (name || email) ?
-                    <>
-                        <p className="font-bold">Posted By : <span className="font-normal">{name}</span></p>
-                        <p className="font-bold">Contact Info : <span className="font-normal">{email}</span></p>
-                    </> : <></>
             }
 
 
