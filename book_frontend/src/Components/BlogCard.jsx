@@ -57,7 +57,7 @@ const BlogCard = ({ title, image, description, name, email, date, id, isUser }) 
                 )
             }
 
-            <p className="cursor-pointer" onClick={() => navigate(`/product/${id}`)}>View Blog</p>
+
 
 
         </div>

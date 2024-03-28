@@ -113,7 +113,7 @@ export const updateBlogController = async (req, res) => {
 export const getBlogByController = async (req, res) => {
     try {
         const { id } = req.params;
-        const blog = await blogModels.findById(id);
+        const blog = await blogModels.findById(id).populate("author")
 
         if (!blog) {
             return res.status(401).send({
