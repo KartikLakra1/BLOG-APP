@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BlogCard from "../Components/BlogCard";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const UserBlog = () => {
     const [blogs, setBlogs] = useState([]);
@@ -27,22 +28,35 @@ const UserBlog = () => {
 
     return (
         <div className="w-[100%]">
-            <div className="w-[100%]   mt-6 mb-7 ">
-                <h1 className="text-2xl text-black">Total blogs : {total}</h1>
-                {
-                    <div className="grid grid-cols-1 lg:grid-cols-2 w-[100%] gap-4  bg-slate-400 min-h-[60vh] text-center">{blogs && blogs.map((blog) => <BlogCard
-                        title={blog.title}
-                        image={blog.image}
-                        description={blog.description}
-                        name={blog.author.username}
-                        id={blog._id}
-                        email={blog.author.email}
-                        date={blog.createdAt}
-                        key={blog._id}
-                        isUser={true}
 
-                    />)}</div>
-                }
+            <h1 className="text-2xl p-4 bg-black text-white ">
+                {(total > 0) ?
+                    <h1>Total blogs : {total}</h1>
+                    :
+                    <h1>
+                        <span className="text-red-200 font-serif text-5xl">0 </span>
+                        Blog found try writing something
+                        <NavLink to={'/userdashboard/createblog'}><h1 className="font-bold cursor-pointer text-xl bg-white text-black p-2 mt-2 md:w-fit w-full hover:bg-slate-300 rounded-md text-center">WRITE</h1></NavLink>
+                    </h1>}
+
+            </h1>
+
+            <div className="w-[100%] md:p-10 bg-gradient-to-tr from-slate-600 to-slate-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-center gap-5 p-2 min-h-[80vh]">
+
+
+                {blogs && blogs.map((blog) => <BlogCard
+                    title={blog.title}
+                    image={blog.image}
+                    description={blog.description}
+                    name={blog.author.username}
+                    id={blog._id}
+                    email={blog.author.email}
+                    date={blog.createdAt}
+                    key={blog._id}
+                    isUser={true}
+
+                />)}
+
             </div>
 
         </div>

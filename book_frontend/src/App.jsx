@@ -10,6 +10,7 @@ import UserDashboard from "./pages/UserDashboard";
 import CreateBlog from "./pages/CreateBlog";
 import UpdateBlog from "./pages/UpdateBlog";
 import BlogDetails from "./pages/BlogDetails";
+import SeeBlog from "./pages/SeeBlog";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/userdashboard/createblog" element={<CreateBlog />} />
           <Route path="/userdashboard/updateblog" element={<UpdateBlog />} />
           <Route path="/blog-details/:id" element={<BlogDetails />} />
+          <Route path="/product/:id" element={<SeeBlog />} />
 
 
         </Routes>

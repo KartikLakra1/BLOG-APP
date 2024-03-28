@@ -12,7 +12,7 @@ const ImageSlider = ({ images }) => {
     }, [images.length]);
 
     return (
-        <div className="relative h-[40vh]">
+        <div className="relative h-[30vh] lg:h-[40vh]">
             {images.map((image, index) => (
                 <img
                     key={index}

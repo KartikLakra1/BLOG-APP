@@ -32,49 +32,49 @@ const Navigation = () => {
 
     return (
         <>
-            <div className=" md:flex justify-around items-center bg-gradient-to-r from-slate-600 to-slate-900 text-white pt-6 pb-7 relative z-50">
+            <div className=" md:flex justify-around items-center bg-gradient-to-r from-slate-600 to-slate-900 text-white pt-6 pb-7  z-50 sticky">
                 <div className="text-left pl-1 z-20">
-                    <h1 className="text-5xl font-bold text-yellow-500">BLOG</h1>
+                    <h1 className="lg:text-5xl text-5xl md:text-4xl font-bold text-yellow-500 font-serif">BLOGly</h1>
                 </div>
 
                 <div className="md:flex hidden items-center justify-center">
-                    <input type="text" placeholder="search" className="p-1 text-black"></input>
-                    <span className="cursor-pointer"><IoSearchOutline size={30} className="border-2 bg-black p-1 " /></span>
+
                     <div className="flex items-center justify-center gap-4 ml-4">
 
-                        <NavLink to={'/blogs'}><h1 className="font-semibold cursor-pointer text-2xl">BLOGS</h1></NavLink>
+                        <NavLink to={'/blogs'}><h1 className="font-semibold cursor-pointer text-xl bg-black p-2 rounded-lg">ALL BLOGS</h1></NavLink>
+
                         {
                             isLogin ? <>
 
-                                <NavLink to={"/myblogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
-                            </> : <></>
+                                <NavLink to={"/myblogs"}><h1 className="font-semibold cursor-pointer text-xl">MY BLOGS</h1></NavLink>
+                                <NavLink to={'/userdashboard/createblog'}><h1 className="font-semibold cursor-pointer text-xl">WRITE</h1></NavLink>
+                            </> : <><h2 className="text-red-400">Login to write blog</h2></>
                         }
 
                     </div>
                 </div>
 
-                <div className="md:flex hidden relative">
-                    <CgProfile size={40} onClick={() => setProfile(!profile)} />
+                <div className="md:flex hidden relative ">
+
                     {
 
                         isLogin ? <>
-                            {
-                                profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
-                                    <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md" onClick={handleLogout}>Logout</h1>
-                                    <NavLink to={'/userdashboard'}>
-                                        <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">My Dashboard</h1>
-                                    </NavLink>
-                                </div>) : (<></>)
-                            }
+
+                            <div className="flex items-center justify-center">
+                                <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md" onClick={handleLogout}>Logout</h1>
+                                <NavLink to={'/userdashboard'}>
+                                    <CgProfile />
+                                </NavLink>
+                            </div>
+
 
                         </> : <>
-                            {
-                                profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
 
-                                    <NavLink to={'/login'}><h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Login</h1></NavLink>
-                                    <h1 className="cursor-pointer bg-slate-950 p-2 rounded-md text-sm text-red-700 mt-3">LOGIN TO ACCESS TO WRITE YOUR OWN BLOGS</h1>
-                                </div>) : (<></>)
-                            }
+                            <div className="">
+                                <NavLink to={'/login'}><h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Login</h1></NavLink>
+
+                            </div>
+
 
                         </>
 
@@ -88,45 +88,49 @@ const Navigation = () => {
 
                 {/*Mobile view style */}
 
-                <div className={`absolute h-[70vh] w-full md:hidden flex flex-col items-center justify-start  gap-7 ${toggle ? `left-0` : `left-[-100%]`} duration-1000 text-white bg-gradient-to-r from-slate-700 to-slate-950 z-0 top-24 bg-transparent/2`}>
-                    <div className="flex items-center justify-center flex-col mt-11 p-5 gap-10">
+                <div className={`absolute min-h-[20vh] w-full md:hidden flex flex-col items-center justify-start  gap-1 ${toggle ? `left-0` : `left-[-100%]`} duration-2000 text-white bg-gradient-to-r from-slate-700 to-slate-950 z-0 top-24 bg-transparent/2`}>
+                    <div className="flex w-full items-start justify-center flex-col  pl-2 gap-5">
                         <div className="flex items-center justify-center">
-                            <input type="text" placeholder="search" className="p-1 text-black"></input>
-                            <span className="cursor-pointer"><IoSearchOutline size={30} className="border-2 bg-black p-1 " /></span>
+
                         </div>
-                        <div className="flex items-center justify-center gap-8 ml-4 flex-col">
-                            <NavLink to={"/blogs"}><h1 className="font-semibold cursor-pointer text-2xl"> BLOGS</h1></NavLink>
+                        <div className="flex items-start w-full justify-center gap-2 ml-4 flex-col">
+                            <NavLink to={"/blogs"}><h1 className="font-semibold cursor-pointer text-2xl">ALL BLOGS</h1></NavLink>
                             {
                                 isLogin ? <>
                                     <NavLink to={"/myblogs"}><h1 className="font-semibold cursor-pointer text-2xl">MY BLOGS</h1></NavLink>
+                                    <NavLink to={'/userdashboard/createblog'}><h1 className="font-semibold cursor-pointer text-xl">WRITE</h1></NavLink>
                                 </> : <></>
                             }
                         </div>
                     </div>
 
-                    <div className="absolute bottom-40 left-50">
-                        <CgProfile size={40} onClick={() => setProfile(!profile)} />
+                    <div className="mb-5">
+
                         {
+
                             isLogin ? <>
-                                {
-                                    profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
-                                        <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md" onClick={handleLogout}>Logout</h1>
-                                        <NavLink to={'/userdashboard'}>
-                                            <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">My Dashboard</h1>
-                                        </NavLink>
-                                    </div>) : (<></>)
-                                }
+
+                                <div className="flex items-center justify-center gap-2">
+                                    <h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md text-xl" onClick={handleLogout}>Logout</h1>
+                                    <NavLink to={'/userdashboard'}>
+                                        <CgProfile size={20} />
+                                    </NavLink>
+                                </div>
+
 
                             </> : <>
-                                {
-                                    profile ? (<div className="absolute top-12 bg-slate-800 min-w-[120px] right-0 p-2 gap-4 text-left">
-                                        <NavLink to={'/login'}><h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md" >Login</h1></NavLink>
-                                        <h1 className="cursor-pointer bg-slate-950 p-2 rounded-md text-sm text-red-700 mt-3">LOGIN TO ACCESS TO WRITE YOUR OWN BLOGS</h1>
-                                    </div>) : (<></>)
-                                }
+
+                                <div className="">
+                                    <NavLink to={'/login'}><h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Login</h1></NavLink>
+
+                                </div>
+
 
                             </>
+
+
                         }
+
                     </div>
 
                 </div>
