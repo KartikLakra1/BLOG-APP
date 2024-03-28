@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "frontend": "cd book_frontend && npm run dev",
-    "server": "concurrently \"npm run frontend\" \"npm run start\""
+    "server": "concurrently \"npm run frontend\" \"npm run start\"",
+    "build": "npm i"
   },
   "author": "kartik lakra",
   "license": "ISC",
