@@ -20,12 +20,13 @@ app.use(morgan('dev'));
 
 
 
-app.use("/", (req, res) => {
-    res.send("<h1>server main page</h1>")
-})
 
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/blog', BlogRoutes);
+
+app.use("/", (req, res) => {
+    res.send("<h1>server main page</h1>")
+})
 
 const PORT = process.env.PORT || 8081
 
