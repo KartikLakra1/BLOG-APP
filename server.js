@@ -28,7 +28,7 @@ app.use("/", (req, res) => {
     res.send("<h1>server main page</h1>")
 })
 
-const PORT = process.env.PORT || 8081
+const PORT = process.env.PORT;
 
 app.listen(PORT, () => {
     console.log(`server is running at port ${PORT} under ${process.env.DEV_MODE} mode`.bgCyan.white);
