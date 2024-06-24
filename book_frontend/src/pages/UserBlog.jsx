@@ -27,7 +27,7 @@ const UserBlog = () => {
     }, []);
 
     return (
-        <div className="w-[100%]">
+        <div className="w-[100%] bg-neutral-950 min-h-screen">
 
             <h1 className="text-2xl p-4 bg-black text-white ">
                 {(total > 0) ?
@@ -41,7 +41,7 @@ const UserBlog = () => {
 
             </h1>
 
-            <div className="w-[100%] md:p-10 bg-gradient-to-tr from-slate-600 to-slate-300 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-center gap-5 p-2 min-h-[80vh]">
+            <div className="w-[100%] md:p-10  bg-neutral-950 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 p-2 ">
 
 
                 {blogs && blogs.map((blog) => <BlogCard

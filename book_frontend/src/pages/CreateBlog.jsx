@@ -64,11 +64,11 @@ const CreateBlog = () => {
 
     return (
 
-        <div className="flex items-center justify-between flex-col lg:flex-row w-[100%] gap-5 p-5">
+        <div className="flex items-start justify-between flex-col lg:flex-row w-[100%] gap-5 p-5 bg-neutral-950 min-h-screen">
             <div className="lg:basis-[30%]  w-full" >
                 <Dashboardside />
             </div>
-            <div className="lg:basis-[70%] bg-[url('/assets/dante.jpg')] bg-cover bg-center w-full min-h-10 flex items-center justify-center p-10">
+            <div className="lg:basis-[70%] bg-[url('/assets/image2.jpg')] bg-cover bg-center w-full min-h-10 flex items-center justify-center p-10">
                 <form className="p-3 bg-slate-600/50 w-[80%] lg:w-[50%] backdrop-blur-sm flex items-start justify-center flex-col gap-6" onSubmit={handleSubmit}>
                     <div className="flex flex-col items-start justify-center w-[100%]">
                         <label className="text-2xl text-white font-bold">Title</label>

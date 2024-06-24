@@ -44,7 +44,7 @@ const Login = () => {
 
             </div>
 
-            <div className="bg-white text-black absolute top-[20%] left-4 sm:left-32 lg:left-44 shadow-xl w-[90%] sm:w-[75%] lg:w-[50%]  flex flex-col  sm:flex-row  items-center justify-center min-h-[50vh] bg-[url('/assets/dante.jpg')] bg-center bg-cover opacity-80 p-7">
+            <div className="bg-white text-black absolute top-[20%] left-4 sm:left-32 lg:left-44 shadow-xl w-[90%] sm:w-[75%] lg:w-[50%]  flex flex-col  sm:flex-row  items-center justify-center min-h-[50vh] bg-[url('/assets/image2.jpg')] bg-center bg-cover opacity-80 p-7">
 
                 <div className="w-[100%] sm:w-[60%] opacity-100 text-white bg-slate-600/20 backdrop-blur-xl p-2 lg:p-5 text-xl md:text-2xl gap-6 flex items-start justify-start flex-col">
                     <h1 className="text-3xl font-bold text-yellow-200">Login Form</h1>
@@ -72,7 +72,7 @@ const Login = () => {
                             Submit
                         </button>
                     </form>
-                    <h3>If not already registered ! <Link to={"/register"}>Register</Link></h3>
+                    <h3>If not already registered ! <Link to={"/register"} className="text-yellow-500">Register</Link></h3>
                 </div>
             </div>
 

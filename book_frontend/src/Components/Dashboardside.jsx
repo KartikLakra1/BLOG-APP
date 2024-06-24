@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const Dashboardside = () => {
     return (
-        <div className="border-black border-none p-3 m-4">
+        <div className="border-black border-none p-3 m-4 text-white bg-neutral-950">
             <NavLink to="/userdashboard">
                 <h1 className="text-2xl font-semibold border-2 border-red-700 p-1 hover:cursor-pointer hover:bg-slate-500 duration-700 hover:border-none">PROFILE</h1>
             </NavLink>

@@ -32,9 +32,9 @@ const Navigation = () => {
 
     return (
         <>
-            <div className=" md:flex justify-around items-center bg-gradient-to-r from-slate-600 to-slate-900 text-white pt-6 pb-7  z-50 sticky">
+            <div className=" md:flex justify-around items-center bg-neutral-950 text-white pt-6 pb-7  z-50 sticky">
                 <div className="text-left pl-1 z-20">
-                    <h1 className="lg:text-5xl text-5xl md:text-4xl font-bold text-yellow-500 font-serif">BLOGly</h1>
+                    <h1 className="lg:text-5xl text-5xl md:text-4xl font-bold text-yellow-500 font-serif">bloglify</h1>
                 </div>
 
                 <div className="md:flex hidden items-center justify-center">
@@ -71,7 +71,7 @@ const Navigation = () => {
                         </> : <>
 
                             <div className="">
-                                <NavLink to={'/login'}><h1 className="cursor-pointer hover:bg-slate-400 p-1 rounded-md">Login</h1></NavLink>
+                                <NavLink to={'/login'}><h1 className="cursor-pointer hover:bg-slate-300 hover:text-black p-1 rounded-md">Login</h1></NavLink>
 
                             </div>
 
@@ -88,7 +88,7 @@ const Navigation = () => {
 
                 {/*Mobile view style */}
 
-                <div className={`absolute min-h-[20vh] w-full md:hidden flex flex-col items-center justify-start  gap-1 ${toggle ? `left-0` : `left-[-100%]`} duration-2000 text-white bg-gradient-to-r from-slate-700 to-slate-950 z-0 top-24 bg-transparent/2`}>
+                <div className={`absolute min-h-[20vh] w-full md:hidden flex flex-col items-center justify-start  gap-1 ${toggle ? `left-0` : `left-[-100%]`} duration-2000 text-white bg-neutral-950 z-0 top-24 bg-transparent/2`}>
                     <div className="flex w-full items-start justify-center flex-col  pl-2 gap-5">
                         <div className="flex items-center justify-center">
 

@@ -18,9 +18,6 @@ app.use(cors());
 app.use(express.json())
 app.use(morgan('dev'));
 
-
-
-
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/blog', BlogRoutes);
 

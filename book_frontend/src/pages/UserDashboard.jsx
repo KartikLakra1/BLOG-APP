@@ -27,11 +27,11 @@ const UserDashboard = () => {
     }, [])
 
     return (
-        <div className="flex items-center justify-between flex-col lg:flex-row w-[100%] gap-5 p-5">
+        <div className="flex items-start justify-between flex-col lg:flex-row w-[100%] gap-5 p-5 bg-neutral-950 min-h-screen">
             <div className="lg:basis-[30%]  w-full" >
                 <Dashboardside />
             </div>
-            <div className="lg:basis-[70%] bg-yellow-300 w-full min-h-10">
+            <div className="lg:basis-[70%] lg:text-3xl text-white w-full p-1  lg:pt-14 ">
                 <h1>Username : {user.username}</h1>
                 <h1>Email : {user.email}</h1>
             </div>
