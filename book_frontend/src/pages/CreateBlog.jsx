@@ -16,10 +16,12 @@ const CreateBlog = () => {
     try {
       const id = localStorage.getItem("userId");
       console.log(id);
-      // const { data } = await axios.get(`http://localhost:8080/api/v1/user/userinfo/${id}`);
       const { data } = await axios.get(
-        `https://blog-app-4sc3.onrender.com/api/v1/user/userinfo/${id}`
+        `http://localhost:8080/api/v1/user/userinfo/${id}`
       );
+      //   const { data } = await axios.get(
+      //     `https://blog-app-4sc3.onrender.com/api/v1/user/userinfo/${id}`
+      //   );
 
       if (data?.success) {
         setuser(data?.user);

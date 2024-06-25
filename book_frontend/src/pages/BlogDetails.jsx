@@ -47,23 +47,23 @@ const BlogDetails = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //   const { data } = await axios.put(
-      //     `http://localhost:8080/api/v1/blog/update-blog/${id}`,
-      //     {
-      //       title: inputs.title,
-      //       description: inputs.description,
-      //       image: inputs.image,
-      //     }
-      //   );
-
       const { data } = await axios.put(
-        `https://blog-app-4sc3.onrender.com/api/v1/blog/update-blog/${id}`,
+        `http://localhost:8080/api/v1/blog/update-blog/${id}`,
         {
           title: inputs.title,
           description: inputs.description,
           image: inputs.image,
         }
       );
+
+      //   const { data } = await axios.put(
+      //     `https://blog-app-4sc3.onrender.com/api/v1/blog/update-blog/${id}`,
+      //     {
+      //       title: inputs.title,
+      //       description: inputs.description,
+      //       image: inputs.image,
+      //     }
+      //   );
 
       if (data?.success) {
         alert("Blog updated successfully");
