@@ -11,7 +11,8 @@ const Blogs = () => {
   const getAllBlogs = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8080/api/v1/blog/all-blog"
+        // "http://localhost:8080/api/v1/blog/all-blog"
+        "https://blog-app-4sc3.onrender.com/api/v1/blog/all-blog"
       );
       if (data && data.success) {
         setBlogs(data?.blogs);
