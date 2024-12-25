@@ -31,7 +31,7 @@ const SeeBlog = () => {
   }, [params.id]);
 
   return (
-    <div className="flex items-center flex-col justify-center gap-6 w-[100%] lg:p-11 p-3 pt-5 pb-5 bg-neutral-950 ">
+    <div className="flex items-center flex-col justify-center gap-6 w-[100%] lg:p-11 p-3 pt-5 pb-5 bg-neutral-950 min-h-screen">
       <div className="border-4 border-white p-1">
         <div className="h-[200px] w-full md:h-[210px] lg:h-auto lg:w-full rounded-md border-black border mb-3">
           <img src={blog.image} alt="card image" className="h-full w-full" />
