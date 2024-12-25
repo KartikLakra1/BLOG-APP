@@ -14,8 +14,12 @@ const SeeBlog = () => {
   // get product
   const getProduct = async () => {
     try {
+      //   const { data } = await axios.get(
+      //     `http://localhost:8080/api/v1/blog/get-blog/${params.id}`
+      //   );
+
       const { data } = await axios.get(
-        `http://localhost:8080/api/v1/blog/get-blog/${params.id}`
+        `https://blog-app-4sc3.onrender.com/api/v1/blog/get-blog/${params.id}`
       );
 
       setBlog(data?.blog);

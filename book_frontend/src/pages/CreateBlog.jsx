@@ -4,108 +4,118 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const CreateBlog = () => {
+  const [user, setuser] = useState([]);
+  const [inputs, setInputs] = useState({
+    title: "",
+    description: "",
+    image: "",
+  });
+  const navigate = useNavigate();
 
-    const [user, setuser] = useState([]);
-    const [inputs, setInputs] = useState({
-        title: "",
-        description: "",
-        image: "",
-    })
-    const navigate = useNavigate()
+  const getuserinfo = async () => {
+    try {
+      const id = localStorage.getItem("userId");
+      console.log(id);
+      const { data } = await axios.get(
+        `http://localhost:8080/api/v1/user/userinfo/${id}`
+      );
+      //   const { data } = await axios.get(
+      //     `https://blog-app-4sc3.onrender.com/api/v1/user/userinfo/${id}`
+      //   );
 
-    const getuserinfo = async () => {
-        try {
-            const id = localStorage.getItem('userId');
-            console.log(id);
-            const { data } = await axios.get(`http://localhost:8080/api/v1/user/userinfo/${id}`);
+      if (data?.success) {
+        setuser(data?.user);
+        console.log(user.email);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-            if (data?.success) {
-                setuser(data?.user);
-                console.log(user.email);
-            }
+  useEffect(() => {
+    getuserinfo();
+  }, []);
 
-        } catch (error) {
-            console.log(error);
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/api/v1/blog/create-blog",
+        {
+          title: inputs.title,
+          description: inputs.description,
+          image: inputs.image,
+          useremail: user.email,
         }
+      );
+      if (data?.success) {
+        alert("Blog created");
+        navigate("/myblogs");
+      }
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    useEffect(() => {
-        getuserinfo();
-    }, [])
+  return (
+    <div className="flex items-start justify-between flex-col lg:flex-row w-[100%] gap-5 p-5 bg-neutral-950 min-h-screen">
+      <div className="lg:basis-[30%]  w-full">
+        <Dashboardside />
+      </div>
+      <div className="lg:basis-[70%] bg-[url('/assets/image2.jpg')] bg-cover bg-center w-full min-h-10 flex items-center justify-center p-10">
+        <form
+          className="p-3 bg-slate-600/50 w-[80%] lg:w-[50%] backdrop-blur-sm flex items-start justify-center flex-col gap-6"
+          onSubmit={handleSubmit}>
+          <div className="flex flex-col items-start justify-center w-[100%]">
+            <label className="text-2xl text-white font-bold">Title</label>
+            <input
+              type="text"
+              className="text-black p-1 w-[90%] text-lg"
+              name="title"
+              onChange={handleChange}
+              value={inputs.title}
+              required
+            />
+          </div>
 
-    const handleChange = (e) => {
-        setInputs(prevState => ({
-            ...prevState,
-            [e.target.name]: e.target.value
-        }))
-    }
+          <div className="flex flex-col items-start justify-center w-[100%]">
+            <label className="text-2xl text-white font-bold">Image URL</label>
+            <input
+              type="text"
+              className="text-black p-1 w-[90%] text-lg "
+              name="image"
+              onChange={handleChange}
+              value={inputs.image}
+              required
+            />
+          </div>
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const { data } = await axios.post('http://localhost:8080/api/v1/blog/create-blog', {
-                title: inputs.title,
-                description: inputs.description,
-                image: inputs.image,
-                useremail: user.email
+          <div className="flex flex-col items-start justify-center w-[100%]">
+            <label className="text-2xl text-white font-bold">Description</label>
+            <textarea
+              className="w-[90%] h-[150px] lg:h-[80px] overflow-scroll p-1 text-lg resize-none"
+              name="description"
+              onChange={handleChange}
+              value={inputs.description}
+              required></textarea>
+          </div>
 
-            });
-            if (data?.success) {
-                alert("Blog created")
-                navigate("/myblogs")
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-
-
-
-    return (
-
-        <div className="flex items-start justify-between flex-col lg:flex-row w-[100%] gap-5 p-5 bg-neutral-950 min-h-screen">
-            <div className="lg:basis-[30%]  w-full" >
-                <Dashboardside />
-            </div>
-            <div className="lg:basis-[70%] bg-[url('/assets/image2.jpg')] bg-cover bg-center w-full min-h-10 flex items-center justify-center p-10">
-                <form className="p-3 bg-slate-600/50 w-[80%] lg:w-[50%] backdrop-blur-sm flex items-start justify-center flex-col gap-6" onSubmit={handleSubmit}>
-                    <div className="flex flex-col items-start justify-center w-[100%]">
-                        <label className="text-2xl text-white font-bold">Title</label>
-                        <input type="text" className="text-black p-1 w-[90%] text-lg"
-                            name="title"
-                            onChange={handleChange}
-                            value={inputs.title}
-                            required />
-                    </div>
-
-                    <div className="flex flex-col items-start justify-center w-[100%]">
-                        <label className="text-2xl text-white font-bold">Image URL</label>
-                        <input type="text" className="text-black p-1 w-[90%] text-lg "
-                            name="image"
-                            onChange={handleChange}
-                            value={inputs.image}
-                            required />
-                    </div>
-
-                    <div className="flex flex-col items-start justify-center w-[100%]">
-                        <label className="text-2xl text-white font-bold">Description</label>
-                        <textarea className="w-[90%] h-[150px] lg:h-[80px] overflow-scroll p-1 text-lg resize-none"
-                            name="description"
-                            onChange={handleChange}
-                            value={inputs.description}
-                            required></textarea>
-                    </div>
-
-
-
-                    <button type="submit" className="mt-4 mb-4 bg-white text-black p-2 rounded-lg font-semibold">
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </div>
-    )
+          <button
+            type="submit"
+            className="mt-4 mb-4 bg-white text-black p-2 rounded-lg font-semibold">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default CreateBlog;
