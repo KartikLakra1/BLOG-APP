@@ -13,7 +13,7 @@ const app = express();
 
 connectToDb();
 
-
+// middler wares
 app.use(cors());
 app.use(express.json())
 app.use(morgan('dev'));
